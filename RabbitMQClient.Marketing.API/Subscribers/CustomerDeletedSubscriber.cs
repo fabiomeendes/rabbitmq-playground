@@ -10,7 +10,7 @@ namespace RabbitMQClient.Marketing.API.Subscribers
 	{
         private readonly IModel _channel;
 
-        const string CUSTOMER_CREATED_QUEUE = "customer-deleted";
+        const string CUSTOMER_DELETED_QUEUE = "customer-deleted";
 
         public CustomerDeletedSubscriber()
         {
@@ -40,7 +40,7 @@ namespace RabbitMQClient.Marketing.API.Subscribers
                 _channel.BasicAck(eventArgs.DeliveryTag, false);
             };
 
-            _channel.BasicConsume(CUSTOMER_CREATED_QUEUE, false, consumer);
+            _channel.BasicConsume(CUSTOMER_DELETED_QUEUE, false, consumer);
 
             return Task.CompletedTask;
         }

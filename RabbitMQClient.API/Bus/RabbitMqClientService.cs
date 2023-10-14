@@ -19,6 +19,8 @@ namespace RabbitMQClient.Customers.API.Bus
             var connection = connectionFactory.CreateConnection("curso-rabbitmq-client-publisher");
 
             _channel = connection.CreateModel();
+
+            _channel.ExchangeDeclare(EXCHANGE, "topic", false);
         }
 
         public void Publish<T>(string routingKey, T message)

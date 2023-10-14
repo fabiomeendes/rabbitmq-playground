@@ -20,7 +20,7 @@ namespace RabbitMQClient.Customers.API.Bus
 
             _channel = connection.CreateModel();
 
-            _channel.ExchangeDeclare(EXCHANGE, "topic", false);
+            _channel.ExchangeDeclare(EXCHANGE, "topic", false, false);
         }
 
         public void Publish<T>(string routingKey, T message)
